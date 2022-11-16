@@ -11,31 +11,44 @@
         <article class="col-md-12 maincontent">
             <div class="container">
                 <div class="row">	
-                    <h1>Liste des Categories </h1>
+                    <h1>Liste des users </h1>
 
                     <hr style="width:100%; height:10px; background-color:#1B4F72 ">
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Titre</th>
-                                    <th>REsume</th>
-                                    <th>Action</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Photo</th>
+                                    <th>Date_naissance</th>
+                                    <th>Login</th>
+                                    <th>Password</th>
+                                    <th>Adresse</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for categorie in categories %}
+                                {% for user in users %}
                                     <tr>
-                                        <td>{{ categorie.id }}</td>
-                                        <td>{{ categorie.titre }}</td>
-                                        <td>{{ categorie.resume }}</td>
+                                        <td>{{ user.id }}</td>
+                                        <td>{{ user.nom }}</td>
+                                        <td>{{ user.prenom }}</td>
+                                        <td>{{ user.photo }}</td>
+                                        <td>{{ user.datenaissance | date('d/m/Y') }}</td>
+                                        <td>{{ user.login }}</td>
+                                        <td>{{ user.password }}</td>
+                                        <td>{{ user.adresse }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.role }}</td>
                                         <td> 
                                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                                 <div class="text-center">
                                                     <a href="#" class="btn btn-success"> affich / </a> 
                                                     <a href="#" class="btn btn-warning"> edit / </a> 
-                                                    {# <a href="{{path('adm_categorie_delete', {'id': categorie.id})}}" class="btn btn-danger"> Suppr  </a> #} 
-                                                     {# {{ include('categorie/_delete_form.html.twig') }} #}
+                                                    {# <a href="{{path('adm_user_delete', {'id': user.id})}}" class="btn btn-danger"> Suppr  </a> #} 
+                                                     {# {{ include('user/_delete_form.html.twig') }} #}
                                                     
                                                     
                                                 </div>
@@ -44,7 +57,7 @@
                                     </tr>
                                 {% else %}
                                     <tr>
-                                        <td colspan="5"> Aucun article pour lemoment  </td>
+                                        <td colspan="5"> Aucun User pour lemoment  </td>
                                     </tr>
                                 {% endfor %}
                         </tbody>
@@ -53,7 +66,7 @@
                     <br><br><br><br>
                 </div>
                 <div>
-                    <a href="{{path('app_categorie_new')}}" class="btn btn-primary"> Ajouter une categorie /  </a> <br><br><br><br>
+                     <a href="{{path('app_user_new')}}" class="btn btn-primary"> Ajouter une user /  </a> <br><br><br><br> 
                 </di>
             </div>
         </article>
