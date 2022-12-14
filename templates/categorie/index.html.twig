@@ -17,10 +17,24 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
+                                {% if tri is defined %}
+                                    {% if tri == 'ASC' %}
                                     <th>Id</th>
-                                    <th>Titre</th>
-                                    <th>REsume</th>
+                                    <th><a href="{{path('app_categorie_tri', {'champ': 'titre', 'tri': 'DESC' })}}" >Titre</a></th>
+                                    <th><a href="{{path('app_categorie_tri', {'champ': 'resume', 'tri': 'DESC' })}}" >Resume</a></th>
                                     <th>Action</th>
+                                    {% else %}
+                                    <th>Id</th>
+                                    <th><a href="{{path('app_categorie_tri', {'champ': 'titre', 'tri': 'ASC' })}}" >Titre</a></th>
+                                    <th><a href="{{path('app_categorie_tri', {'champ': 'resume', 'tri': 'ASC' })}}" >Resume</a></th>
+                                    <th>Action</th>
+                                    {% endif %}
+                                {% else %}
+                                    <th>Id</th>
+                                    <th><a href="{{path('app_categorie_tri', {'champ': 'titre' , 'tri'  : 'ASC'})}}" >Titre</a></th>
+                                    <th><a href="{{path('app_categorie_tri', {'champ': 'resume', 'tri': 'ASC' })}}" >Resume</a></th>
+                                    <th>Action</th>
+                                {% endif %}
                                 </tr>
                             </thead>
                             <tbody>

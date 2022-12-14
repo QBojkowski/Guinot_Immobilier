@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Categorie;
 use App\Repository\CategorieRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +22,34 @@ class CategorieController extends AbstractController
             'categories' => $categorieRepository->findAll(),
         ]);
     }
+
+    /**
+     * @Route("/tri/{champ}/{tri}", name="app_categorie_tri", methods={"GET"})
+     */
+    public function triAsc(PaginatorInterface $paginator, Request $request, CategorieRepository $categorieRepository): Response
+    {
+        $champ = $request->attributes->get('champ');
+        $tri = $request->attributes->get('tri');
+
+
+        $donnees = $categorieRepository->getTri($champ,$tri);
+
+        $categories = $paginator->paginate(  
+            $donnees, /* query NOT result */
+        $request->query->getInt('page', 1), /*page number*/
+        30 /*limit per page*/
+    );
+        return $this->render('categorie/index.html.twig', [
+        'categories' => $categories,
+        'tri' => $tri
+        ]);
+    }
+
+
+
+
+
+
 
     /**
      * @Route("/categorie/new", name="app_categorie_new")

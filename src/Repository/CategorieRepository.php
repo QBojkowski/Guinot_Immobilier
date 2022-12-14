@@ -39,6 +39,20 @@ class CategorieRepository extends ServiceEntityRepository
         }
     }
 
+
+    /**
+    * @return Categories[] Returns an array of Users objects
+    */
+    public function getTri(string $champ , string $tri): array
+    {
+        $query = $this->createQueryBuilder('c')
+            ->select('c')
+            ->orderBy('c.' . $champ , $tri)
+            ->getQuery();
+        return $query->getResult();
+    }
+
+
 //    /**
 //     * @return Categorie[] Returns an array of Categorie objects
 //     */
